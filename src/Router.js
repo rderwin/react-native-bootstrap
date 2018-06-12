@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import MovieSearch from './containers/movies/MovieSearch';
+import MovieDetail from './containers/movies/MovieDetail';
 
 const RouterComponent = () =>
   (
@@ -23,6 +24,11 @@ const RouterComponent = () =>
             component={MovieSearch}
             title="Live Chat"
             leftTitle="settings"
+          />
+          <Scene
+            key="movieDetail"
+            component={MovieDetail}
+            title="Movie Detail"
           />
         </Scene>
       </Router>

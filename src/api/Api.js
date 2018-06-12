@@ -22,6 +22,15 @@ export default class Api {
       },
     });
   }
+
+  fetchMovieDetail(imdbID) {
+    return this.axiosInstance.get('/', {
+      params: {
+        i: imdbID,
+        apikey: '83bf75ff',
+      },
+    });
+  }
 }
 
 export const api = new Api();

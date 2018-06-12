@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { searchMovies } from '../../actions/MovieActions';
 import MovieListEntry from '../../components/movies/MovieListEntry';
 import Input from '../../components/common/Input';
@@ -12,7 +13,17 @@ class MovieSearch extends Component {
     this.props.searchMovies('Batman');
   }
 
-  renderRow = (movie) => <MovieListEntry movie={movie.item} />;
+  onRowPress = (movie) => {
+    Actions.movieDetail({ imdbID: movie.item.imdbID });
+  }
+
+  renderRow = (movie) => {
+    return (
+      <TouchableOpacity onPress={() => this.onRowPress(movie)}>
+        <MovieListEntry movie={movie.item} />
+      </TouchableOpacity>
+    );
+  }
 
   render() {
     const { movieList, loading } = this.props;

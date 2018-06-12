@@ -52,16 +52,6 @@ const styles = {
     color: '#333333',
     marginBottom: 10,
   },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  miniViewStyle: {
-    flexDirection: 'row',
-    flex: 1,
-  },
   smallTextStyle: {
     fontSize: 12,
     marginBottom: 10,
