@@ -9,8 +9,19 @@ import Spinner from '../../components/common/Spinner';
 
 
 class MovieSearch extends Component {
+  constructor() {
+    super();
+    this.state = { searchQuery: 'Batman' };
+  }
+
   componentWillMount() {
-    this.props.searchMovies('Batman');
+    const { searchQuery } = this.state;
+    this.props.searchMovies(searchQuery);
+  }
+
+  onChangeText = (text) => {
+    this.setState({ searchQuery: text });
+    this.props.searchMovies(text);
   }
 
   onRowPress = (movie) => {
@@ -25,7 +36,7 @@ class MovieSearch extends Component {
     );
   }
 
-  render() {
+  renderMovieList() {
     const { movieList, loading } = this.props;
     if (loading) {
       return (
@@ -37,10 +48,6 @@ class MovieSearch extends Component {
     if (movieList) {
       return (
         <View style={{ flex: 1 }}>
-          <Input
-            placeholder="Search for movie by name..."
-            editable
-          />
           <FlatList
             style={styles.flastListStyle}
             data={movieList.Search}
@@ -51,6 +58,21 @@ class MovieSearch extends Component {
       );
     }
     return <View />;
+  }
+
+  render() {
+    const { searchQuery } = this.state;
+    return (
+      <View style={{ flex: 1 }}>
+        <Input
+          placeholder="Search for movie by name..."
+          value={searchQuery}
+          onChangeText={this.onChangeText}
+          editable
+        />
+        {this.renderMovieList()}
+      </View>
+    );
   }
 }
 
