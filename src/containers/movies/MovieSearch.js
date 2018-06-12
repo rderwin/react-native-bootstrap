@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { searchMovies } from '../../actions/MovieActions';
+import MovieListEntry from '../../components/movies/MovieListEntry';
+import Input from '../../components/common/Input';
+import Spinner from '../../components/common/Spinner';
+
 
 class MovieSearch extends Component {
   componentWillMount() {
     this.props.searchMovies('Batman');
   }
 
-  renderRow(movie) {
-    console.log('this called');
-    console.log(movie);
-    console.log(movie.item.Title);
-    return <Text>{movie.item.Title}</Text>;
-  }
+  renderRow = (movie) => <MovieListEntry movie={movie.item} />;
 
   render() {
-    const { movieList } = this.props;
+    const { movieList, loading } = this.props;
+    if (loading) {
+      return (
+        <View style={{ flex: 1 }}>
+          <Spinner />
+        </View>
+      );
+    }
     if (movieList) {
       return (
-        <View>
+        <View style={{ flex: 1 }}>
+          <Input
+            placeholder="Search for movie by name..."
+            editable
+          />
           <FlatList
+            style={styles.flastListStyle}
             data={movieList.Search}
             keyExtractor={movie => movie.imdbID}
             renderItem={this.renderRow}
           />
-          <Text>hi</Text>
-                    <Text>hi</Text>
-                              <Text>hi</Text>
         </View>
       );
     }
@@ -35,9 +43,15 @@ class MovieSearch extends Component {
   }
 }
 
+const styles = {
+  flastListStyle: {
+    margin: 10,
+  },
+};
 
 const mapStateToProps = state => ({
   movieList: state.movies.movieList,
+  loading: state.movies.loading,
 });
 
 export default connect(mapStateToProps, {
