@@ -9,6 +9,8 @@ import Router from './Router';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 YellowBox.ignoreWarnings(['Module RCTImageLoader requires']);
+YellowBox.ignoreWarnings(['Class RTCxxModule']);
+
 
 const logger = createLogger();
 
