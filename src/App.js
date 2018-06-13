@@ -11,7 +11,6 @@ YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
 YellowBox.ignoreWarnings(['Module RCTImageLoader requires']);
 YellowBox.ignoreWarnings(['Class RTCxxModule']);
 
-
 const logger = createLogger();
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk, logger));
