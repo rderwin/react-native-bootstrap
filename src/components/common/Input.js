@@ -2,10 +2,15 @@ import React, { PureComponent } from 'react';
 import { TextInput, View } from 'react-native';
 
 class Input extends PureComponent {
+  focus() {
+    this.input.focus();
+  }
+
   render() {
     return (
       <View style={styles.containerStyle}>
         <TextInput
+          ref={ref => this.input = ref}
           secureTextEntry={this.props.secureTextEntry}
           placeholder={this.props.placeholder}
           placeholderTextColor="#999999"
